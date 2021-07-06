@@ -1,28 +1,28 @@
 <div>
-    <h5>Plex Settings</h5>
-<h6>Plex Servers
+    <h5>{{'settings_server.title' | i18next}}</h5>
+<h6>{{'settings_server.servers' | i18next}}
     <button class="pull-right btn btn-sm btn-success" style="margin-bottom:10px;" ng-disabled="isProcessing" ng-click="addPlexServer()">
-        Sign In/Add Servers
+        {{'settings_server.sign_server' | i18next}}
     </button>
 </h6>
 <div ng-if="isProcessing">
     <br>
     <h6>
-        <span class="pull-right text-info">{{ isProcessing ? 'You have 2 minutes to sign into your Plex Account.' : ''}}</span>
+        <span class="pull-right text-info">{{ isProcessing ? 'settings_server.minutes_to_sign_plex' : '' | i18next}}</span>
     </h6>
     <br>
 </div>
 <table class="table">
     <tr>
-        <th>Name</th>
-        <th>uri</th>
-        <th>UI Route</th>
-        <th>Backend Route</th>
+        <th>{{'settings_server.name' | i18next}}</th>
+        <th>{{'settings_server.uri' | i18next}}</th>
+        <th>{{'settings_server.ui_route' | i18next}}</th>
+        <th>{{'settings_server.backend_route' | i18next}}</th>
         <th></th>
     </tr>
     <tr ng-if="servers.length === 0">
         <td colspan="7">
-            <p class="text-center text-danger">Add a Plex Server</p>
+            <p class="text-center text-danger">{{'settings_server.add_server' | i18next}}</p>
         </td>
     </tr>
     <tr ng-if="serversPending">
@@ -33,13 +33,13 @@
         <td><span class='text-secondary text-small'>{{ x.uri }}</span></td>
         <td>
             <div class='loader' ng-if="x.uiStatus == 0"></div>
-            <div class='text-success' ng-if="x.uiStatus == 1"><i class='fa fa-check'></i>ok</div>
-            <div class='text-danger' ng-if="x.uiStatus == -1"><i class='fa fa-exclamation-triangle'></i>error</div>
+            <div class='text-success' ng-if="x.uiStatus == 1"><i class='fa fa-check'></i>{{'settings_server.ok' | i18next}}</div>
+            <div class='text-danger' ng-if="x.uiStatus == -1"><i class='fa fa-exclamation-triangle'></i>{{'settings_server.error' | i18next}}</div>
         </td>
         <td>
             <div class='loader' ng-if="x.backendStatus == 0"></div>
-            <div class='text-success' ng-if="x.backendStatus == 1"><i class='fa fa-check'></i>ok</div>
-            <div class='text-danger' ng-if="x.backendStatus == -1"><i class='fa fa-exclamation-triangle'></i>error</div>
+            <div class='text-success' ng-if="x.backendStatus == 1"><i class='fa fa-check'></i>{{'settings_server.ok' | i18next}}</div>
+            <div class='text-danger' ng-if="x.backendStatus == -1"><i class='fa fa-exclamation-triangle'></i>{{'settings_server.error' | i18next}}</div>
         </td>
         <td>
             <button class="btn btn-sm btn-outline-secondary" ng-click="editPlexServer(x)">
@@ -53,25 +53,25 @@
     </tr>
     <tr ng-if="isAnyUIBad()">
         <td colspan="5">
-            <p class="text-center text-danger small">If a Plex server configuration has problems with the UI route, the channel editor won&apos;t be able to access its content.</p>
+            <p class="text-center text-danger small">{{'settings_server.ui_bad' | i18next}}</p>
         </td>
     </tr>
     <tr ng-if="isAnyBackendBad()">
         <td colspan="5">
-            <p class="text-center text-danger small">If a Plex server configuration has problems with the backend route, dizqueTV won&apos;t be able to play its content.</p>
+            <p class="text-center text-danger small">{{'settings_server.server_bad' | i18next}}</p>
         </td>
     </tr>
 
 </table>
 
 <hr>
-<h6>Plex Transcoder Settings
+<h6>{{'settings_server.plex_transcoder_settings' | i18next}}
 
     <button class="pull-right btn btn-sm btn-success" style="margin-left: 5px;" ng-click="updateSettings(settings)">
-        Update
+        {{'settings_server.update' | i18next}}
     </button>
     <button class="pull-right btn btn-sm btn-warning" ng-click="resetSettings(settings)">
-        Reset Options
+        {{'settings_server.reset_options' | i18next}}
     </button>
 </h6>
 <hr>
@@ -79,10 +79,10 @@
     <div class="col-sm-3">
         <div class="form-group">
             <input id="debugLogging" type="checkbox" ng-model="settings.debugLogging"></input>
-            <label for="debugLogging">Debug logging</label>
+            <label for="debugLogging">{{'settings_server.debug_logging' | i18next}}</label>
         </div>
         <div class="form-group">
-            <label>Paths</label>
+            <label>{{'settings_server.paths' | i18next}}</label>
             <select ng-model="settings.streamPath" 
                 ng-options="o.id as o.description for o in pathOptions" ></select>
         </div>
@@ -90,110 +90,110 @@
     <div class="col-sm-3">
         <div class="form-group">
             <input id="updatePlayStatus" type="checkbox" ng-model="settings.updatePlayStatus" ria-describedby="updatePlayStatusHelp"></input>
-            <label for="updatePlayStatus">Send play status to Plex</label>
-            <small id="updatePlayStatusHelp" class="form-text text-muted">Note: This affects the "on deck" for your plex account.</small>
+            <label for="updatePlayStatus">{{'settings_server.send_status_plex' | i18next}}</label>
+            <small id="updatePlayStatusHelp" class="form-text text-muted">{{'settings_server.send_status_plex_note' | i18next}}</small>
         </div>
     </div>
 </div>
 
 <div class="row" ng-hide="hideIfNotPlexPath()">
 <div class="col-sm-12">
-    <p class="text-center text-info small">If stream changes video codec, audio codec, or audio channels upon episode change, you will experience playback issues unless ffmpeg transcoding and normalization are also enabled.</p>
+    <p class="text-center text-info small">{{'settings_server.no_plex_path' | i18next}}</p>
 </div>
 </div>
 
 <div class="row" ng-hide="hideIfNotPlexPath()">
 
     <div class="col-sm-6">
-        <h6 style="font-weight: bold">Video Options</h6>
+        <h6 style="font-weight: bold">{{'settings_server.video_options' | i18next}}</h6>
         <div class="form-group">
-            <label>Supported Video Formats</label>
+            <label>{{'settings_server.supported_video_formats' | i18next}}</label>
             <input type="text" class="form-control form-control-sm" ng-model="settings.videoCodecs" ria-describedby="videoCodecsHelp"></input>
         </div>
         <div class="form-group">
-            <label>Max Playable Resolution</label>
+            <label>{{'settings_server.max_playable_resolution' | i18next}}</label>
             <select ng-model="settings.maxPlayableResolution" 
                 ng-options="o.id as o.description for o in resolutionOptions" ></select>
         </div>
         <div class="form-group">
-            <label>Max Transcode Resolution</label>
+            <label>{{'settings_server.max_transcode_resolution' | i18next}}</label>
             <select ng-model="settings.maxTranscodeResolution" 
                 ng-options="o.id as o.description for o in resolutionOptions "></select>
         </div>
     </div>
     <div class="col-sm-6">
-        <h6 style="font-weight: bold">Audio Options</h6>
+        <h6 style="font-weight: bold">{{'settings_server.audio_options' | i18next}}</h6>
         <div class="form-group">
-            <label>Supported Audio Formats</label>
+            <label>{{'settings_server.supported_audio_formats' | i18next}}</label>
             <input type="text" class="form-control form-control-sm" ng-model="settings.audioCodecs" ria-describedby="audioCodecsHelp" ></input>
-            <small id="audioCodecsHelp" class="form-text text-muted">Comma separated list. Some possible values are 'ac3,aac,mp3'.</small>
+            <small id="audioCodecsHelp" class="form-text text-muted">{{'settings_server.supported_audio_formats_note' | i18next}}</small>
         </div>
         <div class="form-group">
-            <label>Maximum Audio Channels</label>
+            <label>{{'settings_server.max_audio_channels' | i18next}}</label>
             <select ng-model="settings.maxAudioChannels" 
                 ng-options="o.id as o.description for o in maxAudioChannelsOptions" ria-describedby="maxAudioChannelsHelp"></select>
-            <small id="maxAudioChannelsHelp" class="form-text text-muted">Note: 7.1 audio and on some clients, 6.1, is known to cause playback issues.</small>
+            <small id="maxAudioChannelsHelp" class="form-text text-muted">{{'settings_server.max_audio_channels_note' | i18next}}</small>
         </div>
         <div class="form-group">
-            <label>Audio Boost</label>
+            <label>{{'settings_server.audio_boost' | i18next}}</label>
             <select ng-model="settings.audioBoost" 
                 ng-options="o.id as o.description for o in audioBoostOptions" ria-describedby="audioBoostHelp"></select>
-            <small id="audioBoostHelp" class="form-text text-muted">Note: Only applies when downmixing to stereo.</small>
+            <small id="audioBoostHelp" class="form-text text-muted">{{'settings_server.audio_boost_note' | i18next}}</small>
         </div>
     </div>
 </div>
 <div class="row" ng-hide="hideIfNotPlexPath()">
     <div class="col-sm-6">
-        <h6 style="font-weight: bold">Miscellaneous Options</h6>
+        <h6 style="font-weight: bold">{{'settings_server.miscellaneous_options' | i18next}}</h6>
         <div class="form-group">
-            <label>Max Direct Stream Bitrate (Kbps)</label>
+            <label>{{'settings_server.max_direct_stream_bitrate' | i18next}}</label>
             <input type="text" class="form-control form-control-sm" ng-model="settings.directStreamBitrate" ></input>
         </div>
         <div class="form-group">
-            <label>Max Transcode Bitrate (Kbps)</label>
+            <label>{{'settings_server.max_transcode_bitrate' | i18next}}</label>
             <input type="text" class="form-control form-control-sm" ng-model="settings.transcodeBitrate" aria-described-by="transcodebrhelp" ></input>
-            <small id="transcodebrhelp" class='text-muted form-text'>Plex will decide to transcode or direct play based on these settings and if Plex transcodes, it will try to match the transcode bitrate.</small>
+            <small id="transcodebrhelp" class='text-muted form-text'>{{'settings_server.max_transcode_bitrate_note' | i18next}}</small>
 
         </div>
         <div class="form-group">
-            <label>Direct Stream Media Buffer Size</label>
+            <label>{{'settings_server.direct_stream_media_buffer' | i18next}}</label>
             <input type="text" class="form-control form-control-sm" ng-model="settings.mediaBufferSize" ></input>
         </div>
         <div class="form-group">
-            <label>Transcode Media Buffer Size</label>
+            <label>{{'settings_server.transcode_media_buffer' | i18next}}</label>
             <input type="text" class="form-control form-control-sm" ng-model="settings.transcodeMediaBufferSize" ></input>
         </div>
         <div class="form-group">
-            <label>Stream Protocol</label>
+            <label>{{'settings_server.stream_protocol' | i18next}}</label>
             <select ng-model="settings.streamProtocol" 
                 ng-options="o.id as o.description for o in streamProtocols" ></select>
         </div>
         <div class="form-group">
             <input id="forceDirectPlay" type="checkbox" ng-model="settings.forceDirectPlay" ></input>
-            <label for="forceDirectPlay">Force Direct Play</label>
+            <label for="forceDirectPlay">{{'settings_server.force_direct_play' | i18next}}</label>
         </div>
     </div>
     <div class="col-sm-6">
-        <h6 style="font-weight: bold">Subtitle Options</h6>
+        <h6 style="font-weight: bold">{{'settings_server.subtitle_options' | i18next}}</h6>
         <div class="form-group">
-            <label>Subtitle Size</label>
+            <label>{{'settings_server.subtitle_size' | i18next}}</label>
             <input type="text" class="form-control form-control-sm" ng-model="settings.subtitleSize" ></input>
         </div>
         <div class="form-group">
             <input class="form-check-input" id="enableSubtitles" type="checkbox" ng-model="settings.enableSubtitles" ng-disabled="shouldDisableSubtitles()"  ></input>
-            <label class="form-check-label" for="enableSubtitles">Enable Subtitles (Requires Transcoding)</label>
+            <label class="form-check-label" for="enableSubtitles">{{'settings_server.enable_subtitle' | i18next}}</label>
         </div>
     </div>
 </div>
 <div class="row" ng-hide="hideIfNotDirectPath()">
     <div class="col-sm-6">
-        <h6 style="font-weight: bold">Path Replacements</h6>
+        <h6 style="font-weight: bold">{{'settings_server.path_replacements' | i18next}}</h6>
         <div class="form-group">
-            <label>Original Plex path to replace:</label>
+            <label>{{'settings_server.original_plex_path' | i18next}}</label>
             <input type="text" class="form-control form-control-sm" ng-model="settings.pathReplace" ></input>
         </div>
         <div class="form-group">
-            <label>Replace Plex path with:</label>
+            <label>{{'settings_server.replace_plex_path' | i18next}}</label>
             <input type="text" class="form-control form-control-sm" ng-model="settings.pathReplaceWith" ></input>
         </div>
     </div>

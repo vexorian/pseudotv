@@ -62,7 +62,7 @@ function api(db, channelDB, fillerDB, customShowDB, xmltvInterval,  guideService
             name: req.body.name,
         });
         if (servers.length != 1) {
-            return res.status(404).send("Plex server not found.");
+            return res.status(404).send(req.t("api.plex_server_not_found"));
         }
         let plex = new Plex(servers[0]);
         let s = await Promise.race( [

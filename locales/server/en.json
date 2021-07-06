@@ -1,0 +1,15 @@
+{
+    "event":{
+      "server_started": "Server Started",
+      "server_shutdown": "Initiated Server Shutdown"
+    },
+    "api": {
+      "plex_server_not_found": "Plex server not found.",
+      "missing_name": "Missing name"
+    },
+    "tvGuide": {
+      "no_channels": "No channels configured",
+      "no_channels_summary": "Use the dizqueTV web UI to configure channels.",
+      "xmltv_updated": "XMLTV updated at server time {{t}}"
+    }
+}

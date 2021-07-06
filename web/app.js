@@ -4,8 +4,33 @@ require('./ext/lazyload')(angular)
 require('./ext/dragdrop')
 require('./ext/angularjs-scroll-glue')
 require('angular-vs-repeat');
+require('angular-sanitize');
+const i18next = require('i18next');
+const i18nextHttpBackend = require('i18next-http-backend');
+window.i18next = i18next;
 
-var app = angular.module('myApp', ['ngRoute', 'vs-repeat', 'angularLazyImg', 'dndLists', 'luegg.directives'])
+window.i18next.use(i18nextHttpBackend);
+
+window.i18next.init({
+    // debug: true,
+    lng: 'en',
+    fallbackLng: 'en',
+    preload: ['en'],
+    ns: [ 'main' ],
+    defaultNS: [ 'main' ],
+    initImmediate: false,
+    backend: {
+        loadPath: '/locales/{{lng}}/{{ns}}.json'
+    },
+    useCookie: false,
+    useLocalStorage: false,
+}, function (err, t) {
+    console.log('resources loaded');
+});
+
+require('ng-i18next');
+
+var app = angular.module('myApp', ['ngRoute', 'vs-repeat', 'angularLazyImg', 'dndLists', 'luegg.directives', 'jm.i18next'])
 
 app.service('plex',             require('./services/plex'))
 app.service('dizquetv',         require('./services/dizquetv'))

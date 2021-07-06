@@ -8,7 +8,7 @@ class TVGuideService
     /****
      *
      **/
-    constructor(xmltv, db, cacheImageService, eventService) {
+    constructor(xmltv, db, cacheImageService, eventService, i18next) {
         this.cached = null;
         this.lastUpdate = 0;
         this.updateTime = 0;
@@ -20,6 +20,7 @@ class TVGuideService
         this.cacheImageService = cacheImageService;
         this.eventService = eventService;
         this._throttle = throttle;
+        this.i18next = i18next;
     }
 
     async get() {
@@ -322,9 +323,9 @@ class TVGuideService
                         program: {
                             duration: 24*60*60*1000,
                             icon: FALLBACK_ICON,
-                            showTitle: "No channels configured",
+                            showTitle: this.i18next.t("tvGuide.no_channels"),
                             date: formatDateYYYYMMDD(new Date()),
-                            summary : "Use the dizqueTV web UI to configure channels."
+                            summary : this.i18next.t("tvGuide.no_channels_summary")
                         }
                       } )
                 ]
@@ -365,7 +366,7 @@ class TVGuideService
         eventService.push(
             "xmltv",
             {
-                "message": `XMLTV updated at server time = ${t}`,
+                "message": this.i18next.t("tvGuide.xmltv_updated", {t}),
                 "module" : "xmltv",
                 "detail" : {
                     "time": new Date(),
