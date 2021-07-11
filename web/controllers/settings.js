@@ -1,5 +1,10 @@
 module.exports = function ($scope, $location) {
-    $scope.selected = $location.hash()
-    if ($scope.selected === '')
-        $scope.selected = 'xmltv'
+    $scope.selected = $location.search().active || 'xmltv';
+
+    function changeTab(name) {
+        $scope.selected = name;
+        $location.search('active', name);
+    }
+
+    $scope.changeTab = changeTab;
 }

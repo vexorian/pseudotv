@@ -6,8 +6,8 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node index.js",
-    "build": "browserify ./web/app.js -o ./web/public/bundle.js",
-    "dev-client": "watchify ./web/app.js -o ./web/public/bundle.js",
+    "build": "node web-build.js",
+    "dev-client": "node web-build.js --watch",
     "dev-server": "nodemon index.js --ignore ./web/ --ignore ./db/ --ignore ./xmltv.xml",
     "compile": "babel index.js -d dist && babel src -d dist/src",
     "package": "sh ./make_dist.sh",
@@ -22,6 +22,7 @@
     "angular-vs-repeat": "2.0.13",
     "axios": "^0.21.1",
     "body-parser": "^1.19.0",
+    "del": "^5.1.0",
     "diskdb": "0.1.17",
     "express": "^4.17.1",
     "express-fileupload": "^1.2.1",
@@ -29,6 +30,8 @@
     "merge": "2.1.1",
     "node-graceful-shutdown": "1.1.0",
     "node-ssdp": "^4.0.0",
+    "node-stream-zip": "^1.13.6",
+    "plug-and-play": "^2.3.0",
     "random-js": "2.1.0",
     "request": "^2.88.2",
     "uuid": "^8.0.0",
@@ -42,14 +45,16 @@
     "@babel/preset-env": "^7.9.5",
     "@commitlint/cli": "^12.1.4",
     "@commitlint/config-conventional": "^12.1.4",
-    "browserify": "^16.5.1",
+    "babelify": "^10.0.0",
+    "browserify": "^17.0.0",
     "copyfiles": "^2.2.0",
     "cz-conventional-changelog": "^3.3.0",
     "del-cli": "^3.0.0",
     "husky": "^7.0.0",
     "nexe": "^3.3.7",
     "nodemon": "^2.0.3",
-    "watchify": "^3.11.1"
+    "sass": "^1.35.2",
+    "watchify": "^4.0.0"
   },
   "babel": {
     "plugins": [

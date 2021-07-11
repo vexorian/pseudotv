@@ -98,6 +98,10 @@ module.exports = function ($timeout) {
                 let normalEvent = (title) => {
                     return (event) => {
                         let data = JSON.parse(event.data);
+
+                        const customEvent = new CustomEvent('PushEvent', { detail: data.detail });
+                        window.dispatchEvent(customEvent);
+
                         addToast ( {
                             title : title,
                             text : data.message,

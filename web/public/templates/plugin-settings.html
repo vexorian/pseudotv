@@ -1,0 +1,33 @@
+<div>
+    <header>
+        <h1>Plugins</h1>
+        <div class="alert alert-success" role="alert">
+            <p>Welcome to the new dizqueTV Plugins system. This functionality is in beta and under development. Keep in mind that the quantity of plugins installed and quality can affect the performance of dizqueTV.</p>
+            <hr>
+            <p class="mb-0">Please read about plugins on <a href="https://github.com/vexorian/dizquetv/wiki/Plugins" target="_blank">our wiki page</a>.</p>
+        </div>
+    </header>
+
+    <div class="plugin__list">
+        <div class="plugin__list__item"
+            ng-repeat="plugin in plugins">
+            <div class="plugin__list__item__cover">
+                <img ng-src="{{plugin.cover}}" alt="plugin.name">
+            </div>
+            <div class="plugin__list__item__description">
+                <h5>{{plugin.name}}</h5>
+                <p>{{plugin.summary}}</p>
+            </div>
+            <div class="plugin__list__item__actions">
+                <button class="btn btn-danger"
+                    ng-if="plugin.installed"
+                    ng-disabled="busy"
+                    ng-click="removePlugin(plugin)">Remove</button>
+                <button class="btn btn-success" 
+                    ng-if="!plugin.installed"
+                    ng-disabled="busy"
+                    ng-click="installPlugin(plugin)">Install</button>
+            </div>
+        </div>
+    </div>
+</div>

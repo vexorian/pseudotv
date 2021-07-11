@@ -14,38 +14,49 @@
 
 <body ng-app="myApp" style="min-width: 340px;">
     <div class="container-fluid">
-        <h1>
-            <a href="#!/guide"><img id='dizquetv-logo' src="images/dizquetv.png" alt="logo" ></a>
-            dizqueTV
-            <small class="pull-right" style="padding: 5px;">
-                <a href="https://github.com/vexorian/dizquetv" title='Git Repository'> 
-                    <span class="fab fa-github text-sm"></span>
-                </a>
-            </small>
-            <small class="pull-right" style="padding: 5px;">
-                <a href="https://www.reddit.com/r/dizqueTV" title='Subreddit' >
-                    <span class="fab fa-reddit"></span>
-                </a>
-            </small>
-            <small class="pull-right" style="padding: 5px;">
-                <a href="https://discord.gg/bgD9XdDvZE" title='Discord' >
-                    <span class="fab fa-discord"></span>
-                </a>
-            </small>
-        </h1>
-        <a href="#!/guide">Guide</a> - <a href="#!/channels">Channels</a> - <a href="#!/library">Library</a> - <a href="#!/player">Player</a> - <a href="#!/settings">Settings</a> - <a href="#!/version">Version</a>
-        <span class="pull-right">
-            <span style="margin-right: 15px;">
-                <a href="/api/xmltv.xml">XMLTV <span class="far fa-file-code"></span></a>
+        <header ng-controller="HeaderController">
+            <div class="logo-and-social">
+                <div class="logo">
+                    <a href="#!/guide"><img id='dizquetv-logo' src="images/dizquetv.png" alt="logo" ></a>
+                    dizqueTV
+                </div>
+                <div class="social">
+                    <span class="pull-right" style="padding: 5px;">
+                        <a href="https://github.com/vexorian/dizquetv" title='Git Repository'> 
+                            <span class="fab fa-github text-sm"></span>
+                        </a>
+                    </span>
+                    <span class="pull-right" style="padding: 5px;">
+                        <a href="https://www.reddit.com/r/dizqueTV" title='Subreddit' >
+                            <span class="fab fa-reddit"></span>
+                        </a>
+                    </span>
+                    <span class="pull-right" style="padding: 5px;">
+                        <a href="https://discord.gg/bgD9XdDvZE" title='Discord' >
+                            <span class="fab fa-discord"></span>
+                        </a>
+                    </span>
+                </div>
+            </div>
+            <a href="#!/guide">Guide</a> - <a href="#!/channels">Channels</a> - <a href="#!/library">Library</a> - <a href="#!/player">Player</a> - <a href="#!/settings">Settings</a> - <a href="#!/version">Version</a>
+            <span class="pull-right">
+                <span style="margin-right: 15px;">
+                    <a href="/api/xmltv.xml">XMLTV <span class="far fa-file-code"></span></a>
+                </span>
+                <span>
+                    <a href="/api/channels.m3u">M3U <span class="far fa-file-video"></span></a>
+                </span>
             </span>
-            <span>
-                <a href="/api/channels.m3u">M3U <span class="far fa-file-video"></span></a>
-            </span>
-        </span>
-        <hr></hr>
+            <hr></hr>
+            <div class="alert alert-danger" role="alert" ng-if="restartAlert">
+                Danger: you install or remove a plugin recently. To apply changes, <strong>restart the server</strong>!
+            </div>
+        </header>
         <div ng-view></div>
         <toast-notifications></toast-notifications>
     </div>
+
+    <script src="plugins.js"></script>
 </body>
 
 </html>

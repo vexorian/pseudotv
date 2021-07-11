@@ -1,0 +1,35 @@
+.plugin__list {
+    display: flex;
+    &__item {
+        display: flex;
+        flex-direction: column;
+        max-width: calc(30% - 10px);
+        box-shadow: 0px 1px 4px 0px #0000003d;
+        border-radius: 5px;
+
+        &__cover {
+            display: flex;
+            width: 100%;
+            height: 145px;
+            border-radius: 5px 5px 0 0;
+
+            img {
+                border-radius: 5px 5px 0 0; 
+                object-fit: cover;
+                width: 100%;
+            }
+        }
+
+        &__description {
+            padding: 10px;
+        }
+
+        &__actions {
+            width: 100%;
+            padding: 10px;
+            display: flex;
+            justify-content: flex-end;
+            align-items: flex-end;
+        }
+    }
+}

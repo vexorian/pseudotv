@@ -1,0 +1,39 @@
+@use 'plugin-settings';
+
+.settings-page {
+    display: flex;
+    min-height: 50%;
+}
+.settings-page__content {
+    width: 100%;
+}
+.settings-page__menu {
+    display: flex;
+    flex-direction: column;
+    border: #ccc 1px solid;
+    margin-right: 20px;
+    border-radius: 5px;
+    width: 120px;
+}
+
+.settings-page__menu__list {
+    list-style: none;
+    padding: 0;
+}
+.settings-page__menu__item {
+    border-bottom: 1px solid #ccc;
+    padding: 5px 10px;
+    cursor: pointer;
+    color: #007bff;
+}
+.settings-page__menu__item.active {
+    background-color: #423cd4ff;
+    color: #fff;
+}
+
+.settings-page__menu__title {
+    padding: 5px 10px;
+    background-color: #ccc;
+    color: #fff;
+    font-size: 1.3em;
+}

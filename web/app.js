@@ -7,11 +7,12 @@ require('angular-vs-repeat');
 
 var app = angular.module('myApp', ['ngRoute', 'vs-repeat', 'angularLazyImg', 'dndLists', 'luegg.directives'])
 
-app.service('plex',             require('./services/plex'))
-app.service('dizquetv',         require('./services/dizquetv'))
-app.service('resolutionOptions', require('./services/resolution-options'))
-app.service('getShowData', require('./services/get-show-data'))
-app.service('commonProgramTools', require('./services/common-program-tools'))
+app.service('plex',                 require('./services/plex'))
+app.service('dizquetv',             require('./services/dizquetv'))
+app.service('resolutionOptions',    require('./services/resolution-options'))
+app.service('getShowData',          require('./services/get-show-data'))
+app.service('commonProgramTools',   require('./services/common-program-tools'))
+app.service('pluginsService',       require('./services/plugins'))
 
 app.directive('plexSettings',   require('./directives/plex-settings'))
 app.directive('ffmpegSettings', require('./directives/ffmpeg-settings'))
@@ -32,6 +33,7 @@ app.directive('plexServerEdit',  require('./directives/plex-server-edit'))
 app.directive('channelConfig',  require('./directives/channel-config'))
 app.directive('timeSlotsScheduleEditor',  require('./directives/time-slots-schedule-editor'))
 app.directive('randomSlotsScheduleEditor',  require('./directives/random-slots-schedule-editor'))
+app.directive('pluginSettings',  require('./directives/plugin-settings'))
 
 app.controller('settingsCtrl',  require('./controllers/settings'))
 app.controller('channelsCtrl',  require('./controllers/channels'))
@@ -41,6 +43,37 @@ app.controller('guideCtrl',  require('./controllers/guide'))
 app.controller('playerCtrl',  require('./controllers/player'))
 app.controller('fillerCtrl',  require('./controllers/filler'))
 app.controller('customShowsCtrl',  require('./controllers/custom-shows'))
+
+app.controller('HeaderController', ['$scope', 'pluginsService', function($scope, pluginsService) {
+    $scope.restartAlert = false;
+    function listeningPushEvent() {
+        window.addEventListener("PushEvent", function(event) {
+            if(event.detail.event === "plugin.uninstall" || event.detail.event === "plugin.install") {
+                window.localStorage.setItem('restart', true);
+                $scope.restartAlert = true;
+
+                setTimeout(() => {
+                    window.location.reload();
+                }, 3000);
+            }
+         });
+    }
+
+    function isRestartOnLocalStorage() {
+        $scope.restartAlert = window.localStorage.getItem('restart') === 'true' || false;
+        pluginsService.getNeedToRestart().then((response) => {
+            $scope.restartAlert = response.status;
+            window.localStorage.removeItem('restart');
+        });
+    }
+
+    function init() {
+        isRestartOnLocalStorage();
+        listeningPushEvent();
+    }
+
+    init();
+}]);
 
 app.config(function ($routeProvider) {
     $routeProvider
@@ -79,4 +112,4 @@ app.config(function ($routeProvider) {
     .otherwise({
         redirectTo: "guide"
     })
-})
+});

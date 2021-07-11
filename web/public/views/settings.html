@@ -1,29 +1,41 @@
-<div class='container'>
-    <ul class="nav nav-tabs">
-        <li class="nav-item">
-            <span class="nav-link btn btn-link {{ selected === 'xmltv' ? 'active' : ''}}" ng-click="selected = 'xmltv'">
+<div class='settings-page'>
+    <aside class="settings-page__menu">
+        <span class="settings-page__menu__title">Settings</span>
+        <ul class="settings-page__menu__list">
+            <li class="settings-page__menu__item" 
+                ng-class="{'active': selected === 'xmltv'}" 
+                ng-click="changeTab('xmltv')">
                 XMLTV
-            </span>
-        </li>
-        <li class="nav-item">
-            <span class="nav-link btn btn-link {{ selected === 'ffmpeg' ? 'active' : ''}}" ng-click="selected = 'ffmpeg'">
+            </li>
+            <li class="settings-page__menu__item" 
+                ng-class="{'active': selected === 'ffmpeg'}" 
+                ng-click="changeTab('ffmpeg')">
                 FFMPEG
-            </span>
-        </li>
-        <li class="nav-item">
-            <span class="nav-link btn btn-link {{ selected === 'plex' ? 'active' : ''}}" ng-click="selected = 'plex'">
+            </li>
+            <li class="settings-page__menu__item" 
+                ng-class="{'active': selected === 'plex'}" 
+                ng-click="changeTab('plex')">
                 Plex
-            </span>
-        </li>
-        <li class="nav-item">
-            <span class="nav-link btn btn-link {{ selected === 'hdhr' ? 'active' : ''}}" ng-click="selected = 'hdhr'">
+            </li>
+            <li class="settings-page__menu__item" 
+                ng-class="{'active': selected === 'hdhr'}" 
+                ng-click="changeTab('hdhr')">
                 HDHR
-            </span>
-        </li>
-    </ul>
-    <br ></br>
-    <plex-settings ng-if="selected == 'plex'"></plex-settings>
-    <ffmpeg-settings ng-if="selected == 'ffmpeg'"></ffmpeg-settings>
-    <xmltv-settings ng-if="selected == 'xmltv'"></xmltv-settings>
-    <hdhr-settings ng-if="selected == 'hdhr'"></hdhr-settings>
+            </li>
+            <li class="settings-page__menu__item" 
+                ng-class="{'active': selected === 'plugins'}" 
+                ng-click="changeTab('plugins')">
+                Plugins
+            </li>
+            <!-- SETTING:MENU -->
+        </ul>
+    </aside>
+    <div class="settings-page__content">
+        <plex-settings ng-if="selected == 'plex'"></plex-settings>
+        <ffmpeg-settings ng-if="selected == 'ffmpeg'"></ffmpeg-settings>
+        <xmltv-settings ng-if="selected == 'xmltv'"></xmltv-settings>
+        <hdhr-settings ng-if="selected == 'hdhr'"></hdhr-settings>
+        <plugin-settings ng-if="selected == 'plugins'"></plugin-settings>
+        <!-- SETTING:ELEMENT -->
+    </div>
 </div>

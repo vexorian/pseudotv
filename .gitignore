@@ -4,4 +4,5 @@ bin/
 .pseudotv/
 .dizquetv/
 web/public/bundle.js
+web/public/style.css
 *.orig
